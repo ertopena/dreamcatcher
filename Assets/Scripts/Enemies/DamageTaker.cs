@@ -14,6 +14,7 @@ public class DamageTaker : MonoBehaviour {
 	public int baseHealth = 5;
 	public float shakeRadius = 0.05f;
     public AudioClip enemyDeath;
+    public AudioClip boomerReadying;
 
 	private EnemyMotion enemyMotion;
 	private SpriteRenderer enemySprite;
@@ -47,7 +48,7 @@ public class DamageTaker : MonoBehaviour {
 			Die();
 		else
 		{
-			DoHitAnimation();
+            DoHitAnimation();
             enemyAudio.Play();
 
 			if (OnEnemyDamaged != null)
