@@ -19,14 +19,14 @@ public class HeartRateTracker : MonoBehaviour {
 	void OnEnable()
 	{
 		gameController.OnLevelStart += Init;
-		DamageDealer.OnDamageDealt += RaiseHeartRate;
+		DamageDealer.OnDamageToChildAttempted += RaiseHeartRate;
 	}
 
 
 	void OnDisable()
 	{
 		gameController.OnLevelStart -= Init;
-		DamageDealer.OnDamageDealt -= RaiseHeartRate;
+		DamageDealer.OnDamageToChildAttempted -= RaiseHeartRate;
 	}
 
 
