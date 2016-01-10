@@ -13,11 +13,14 @@ public class DamageTaker : MonoBehaviour {
 	public int Health { get; private set; }
 	public int baseHealth = 5;
 	public float shakeRadius = 0.05f;
+    public AudioClip enemyDeath;
 
 	private EnemyMotion enemyMotion;
 	private SpriteRenderer enemySprite;
 	private Transform enemyTransform;
 	private Vector3 positionWhenDamaged;
+
+    AudioSource enemyAudio;
 
 
 	void Awake()
@@ -25,6 +28,7 @@ public class DamageTaker : MonoBehaviour {
 		enemyMotion = GetComponent<EnemyMotion>();
 		enemySprite = enemyMotion.GetComponent<SpriteRenderer>();
 		enemyTransform = enemyMotion.spriteTransform;
+        enemyAudio = GetComponent<AudioSource>();
 	}
 
 
@@ -44,6 +48,7 @@ public class DamageTaker : MonoBehaviour {
 		else
 		{
 			DoHitAnimation();
+            enemyAudio.Play();
 
 			if (OnEnemyDamaged != null)
 				OnEnemyDamaged(this);
@@ -128,6 +133,8 @@ public class DamageTaker : MonoBehaviour {
 		DoDeathAnimation();
 		
 		GetComponentInChildren<Collider2D>().enabled = false;
+        enemyAudio.clip = enemyDeath;
+        enemyAudio.Play();
 
 		if (OnEnemyDeath != null)
 			OnEnemyDeath(this);
