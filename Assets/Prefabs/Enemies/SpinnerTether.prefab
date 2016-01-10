@@ -11,13 +11,14 @@ GameObject:
   - 114: {fileID: 11461816}
   - 114: {fileID: 11426598}
   - 114: {fileID: 11485148}
+  - 114: {fileID: 11437360}
   m_Layer: 0
   m_Name: SpinnerTether
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &153562
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 472702}
@@ -161,6 +162,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standardDamage: 40
+--- !u!114 &11437360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a691f72aad5cb5b468ee5967ad98e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11461816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,11 +185,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
-  tetherTransform: {fileID: 0}
-  spriteTransform: {fileID: 0}
-  startingDistance: 6
+  tetherTransform: {fileID: 472702}
+  spriteTransform: {fileID: 478144}
+  startingDistance: 7
   enemySpeed: 1
-  rotationSpeed: 0
+  rotationSpeed: 20
   spriteRadius: 0.5
 --- !u!114 &11485148
 MonoBehaviour:
@@ -240,6 +252,30 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: startingDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: tetherTransform
+      value: 
+      objectReference: {fileID: 472702}
+    - target: {fileID: 0}
+      propertyPath: spriteTransform
+      value: 
+      objectReference: {fileID: 478144}
+    - target: {fileID: 0}
+      propertyPath: rotationSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
