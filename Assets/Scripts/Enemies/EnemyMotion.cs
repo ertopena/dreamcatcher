@@ -5,45 +5,60 @@ public class EnemyMotion : MonoBehaviour {
 
 
 	public GameController gameController;
-	public DamageDealer damageDealer;
 	public Transform tetherTransform;
 	public Transform spriteTransform;
 
+	public bool IsMoving { get; private set; }
 	public float startingDistance = 6f;
 	public float enemySpeed = 1f;
 	public float rotationSpeed = 0;
 	public float spriteRadius = 0.5f;
 
-
-	private bool isMoving = true;		// TODO: Make this dependent on DamageTaker.
+	private DamageDealer damageDealer;
+	private DamageTaker damageTaker;
 
 
 	void Awake()
 	{
-		if (damageDealer == null)
-			damageDealer = GetComponent<DamageDealer>();
+		damageDealer = GetComponent<DamageDealer>();
+		damageTaker = GetComponent<DamageTaker>();
 	}
 
 
 	void OnEnable()
 	{
+		damageTaker.OnEnemyDamaged += SuspendMotion;
+		damageTaker.OnDamageAnimationEnd += ResumeMotion;
+		damageTaker.OnEnemyDeath += SuspendMotion;
+
 		Init();
+	}
+
+
+	void OnDisable()
+	{
+		damageTaker.OnEnemyDamaged -= SuspendMotion;
+		damageTaker.OnDamageAnimationEnd -= ResumeMotion;
+		damageTaker.OnEnemyDeath -= SuspendMotion;
 	}
 
 
 	void Init()
 	{
 		// Set distance of the sprite to the tether (which must be at the origin).
-		spriteTransform.position = StartingPosition();
+		spriteTransform.localPosition = StartingPosition();
 
 		// Rotate the tether randomly so that each enemy approaches from a new angle.
 		tetherTransform.Rotate(RandomRotation());
+
+		// Start motion.
+		IsMoving = true;
 	}
 
 
 	void FixedUpdate()
 	{
-		if (isMoving)
+		if (IsMoving)
 		{
 			ApplyRotation();
 			GetCloserToChild();
@@ -51,10 +66,22 @@ public class EnemyMotion : MonoBehaviour {
 			if (IsTouchingChild())
 			{
 				damageDealer.DamageChild();
-				// end motion.
-				// death animation.
+				IsMoving = false;
+				// TODO: death animation.
 			}
 		}
+	}
+
+
+	void SuspendMotion(DamageTaker dmgTaker)
+	{
+		IsMoving = false;
+	}
+	
+
+	void ResumeMotion(DamageTaker dmgTaker)
+	{
+		IsMoving = true;
 	}
 
 
@@ -66,10 +93,10 @@ public class EnemyMotion : MonoBehaviour {
 
 	void GetCloserToChild()
 	{
-		Vector3 currentPosition = spriteTransform.position;
+		Vector3 currentPosition = spriteTransform.localPosition;
 		float distanceTraveled = enemySpeed * Time.fixedDeltaTime;
 
-		spriteTransform.position = new Vector3(0, currentPosition.y - distanceTraveled, 0);
+		spriteTransform.localPosition = new Vector3(0, currentPosition.y - distanceTraveled, 0);
 	}
 
 
@@ -79,7 +106,7 @@ public class EnemyMotion : MonoBehaviour {
 			gameController = FindObjectOfType<GameController>();
 
 		if (gameController != null)
-			return spriteTransform.position.y - spriteRadius < gameController.childRadius;
+			return spriteTransform.localPosition.y - spriteRadius < gameController.childRadius;
 
 		Debug.Log("Enemy failed to find the GameController. Check that everything's hooked up right.");
 		return false;
