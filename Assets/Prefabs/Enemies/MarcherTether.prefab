@@ -9,6 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 446774}
   - 114: {fileID: 11421788}
+  - 114: {fileID: 11487124}
+  - 114: {fileID: 11465608}
   m_Layer: 0
   m_Name: MarcherTether
   m_TagString: Untagged
@@ -25,6 +27,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 420390}
   - 212: {fileID: 21226962}
+  - 58: {fileID: 5817850}
   m_Layer: 0
   m_Name: MarcherSprite
   m_TagString: Untagged
@@ -57,6 +60,20 @@ Transform:
   - {fileID: 420390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!58 &5817850
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196180}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &11421788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,11 +85,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93516869c91c1147a31ffcbf0027bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 0}
   tetherTransform: {fileID: 446774}
-  childTransform: {fileID: 420390}
+  spriteTransform: {fileID: 420390}
   startingDistance: 6
   enemySpeed: 1
   rotationSpeed: 0
+  spriteRadius: 0.5
+--- !u!114 &11465608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d94a4741b9c2c4abf9ab7ae5b196d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 5
+  shakeRadius: 0.05
+--- !u!114 &11487124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dcae96336cacd4cb178a7be88782c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standardDamage: 40
 --- !u!212 &21226962
 SpriteRenderer:
   m_ObjectHideFlags: 1
