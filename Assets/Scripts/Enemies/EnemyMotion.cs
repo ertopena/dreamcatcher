@@ -45,6 +45,10 @@ public class EnemyMotion : MonoBehaviour {
 
 	void Init()
 	{
+		// If the GameController is not set, ask a parent.
+		if (gameController == null)
+			gameController = GetComponentInParent<EnemyManager>().gameController;
+
 		// Set distance of the sprite to the tether (which must be at the origin).
 		spriteTransform.localPosition = StartingPosition();
 
@@ -66,18 +70,21 @@ public class EnemyMotion : MonoBehaviour {
 			if (IsTouchingChild())
 			{
 				damageDealer.DamageChild();
-				IsMoving = false;
-				// TODO: death animation.
+				SuspendMotion();
 			}
 		}
 	}
 
 
-	void SuspendMotion(DamageTaker dmgTaker)
+	void SuspendMotion()
 	{
 		IsMoving = false;
 	}
-	
+	void SuspendMotion(DamageTaker dmgTaker)
+	{
+		SuspendMotion();
+	}
+
 
 	void ResumeMotion(DamageTaker dmgTaker)
 	{
