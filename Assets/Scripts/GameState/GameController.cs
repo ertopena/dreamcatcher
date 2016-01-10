@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour {
 	public HeartRateTracker heartRateTracker;
 
 
+	public float childRadius = 0.5f;
+
+
 	void OnEnable()
 	{
 		heartRateTracker.OnLethalHeartRate += HandlePlayerDeath;
