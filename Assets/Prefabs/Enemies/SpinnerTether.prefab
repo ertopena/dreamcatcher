@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11461816}
   - 114: {fileID: 11426598}
   - 114: {fileID: 11485148}
+  - 82: {fileID: 8211962}
   m_Layer: 0
   m_Name: SpinnerTether
   m_TagString: Untagged
@@ -28,7 +29,6 @@ GameObject:
   - 4: {fileID: 478144}
   - 212: {fileID: 21299600}
   - 58: {fileID: 5802870}
-  - 82: {fileID: 8271492}
   m_Layer: 0
   m_Name: SpinnerSprite
   m_TagString: Untagged
@@ -75,16 +75,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!82 &8271492
+--- !u!82 &8211962
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153562}
+  m_GameObject: {fileID: 127484}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7e95c1741ff570043ab90ff1d0ce6b79, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -192,6 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 5
   shakeRadius: 0.05
+  enemyDeath: {fileID: 8300000, guid: 7614cbea00e532d4cb4f6a2456c12929, type: 3}
 --- !u!212 &21299600
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -241,6 +242,22 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e95c1741ff570043ab90ff1d0ce6b79, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: enemyHurt
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e95c1741ff570043ab90ff1d0ce6b79, type: 3}
+    - target: {fileID: 0}
+      propertyPath: enemyDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: 7614cbea00e532d4cb4f6a2456c12929, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 127484}
