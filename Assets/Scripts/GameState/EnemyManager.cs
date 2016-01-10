@@ -15,4 +15,5 @@ public class EnemyManager : MonoBehaviour {
 
 
 	// TODO: Seed enemies. Write method to set to active one by one, for the gameController's use.
+
 }

@@ -34,6 +34,7 @@ public class DamageTaker : MonoBehaviour {
 		positionWhenDamaged = Vector2.zero;
 	}
 
+
 	public void TakeDamage()
 	{
 		Health--;
@@ -91,6 +92,7 @@ public class DamageTaker : MonoBehaviour {
 
 	IEnumerator CoDoDeathAnimation()
 	{
+		// TODO: Write actual death animations.
 		yield return new WaitForFixedUpdate();
 
 
