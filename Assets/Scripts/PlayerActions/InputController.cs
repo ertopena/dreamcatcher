@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerTouch : MonoBehaviour {
+public class InputController : MonoBehaviour {
 
 	void Update ()
 	{
