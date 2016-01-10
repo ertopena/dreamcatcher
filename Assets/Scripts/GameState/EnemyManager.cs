@@ -1,19 +1,40 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(PoolBuilder))]
 public class EnemyManager : MonoBehaviour {
 
-	public GameObject marcherPrefab;
-	public GameObject spinnerPrefab;
-	public GameObject bomberPrefab;
+	public delegate void EnemyManagerEvent();
+	public event EnemyManagerEvent OnAllWaveEnemiesSpawned;
+
+	public GameController gameController;
+	public GameObject[] enemyPrefabs;
+
+	private List<GameObject[]> prefabPools;
 
 
-	private GameObject[] marchers;
-	private GameObject[] spinners;
-	private GameObject[] bombers;
+	void OnEnable()
+	{
+		gameController.OnWaveStart += SpawnEnemies;
+	}
 
 
-	// TODO: Seed enemies. Write method to set to active one by one, for the gameController's use.
+	void Start()
+	{
+		SeedEnemies();
+	}
 
+
+	void SeedEnemies()
+	{
+		prefabPools = GetComponent<PoolBuilder>().BuildPools(enemyPrefabs);
+	}
+
+
+	void SpawnEnemies()
+	{
+		// TODO
+	}
 }
