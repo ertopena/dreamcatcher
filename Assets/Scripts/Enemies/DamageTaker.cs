@@ -4,23 +4,26 @@ using System.Collections;
 
 public class DamageTaker : MonoBehaviour {
 
+	public delegate void AnimationDelegate();
+	public AnimationDelegate AnimateDamage;
+	public AnimationDelegate AnimateDeath;
+
 	public delegate void EnemyDamageEvent(DamageTaker damageTaker);
 	public event EnemyDamageEvent OnEnemyDamaged;
-	public event EnemyDamageEvent OnDamageAnimationEnd;
 	public event EnemyDamageEvent OnEnemyDeath;
 
 
 	public int Health { get; private set; }
 	public int baseHealth = 5;
-	public float shakeRadius = 0.05f;
+	public AudioClip enemyHurt;
     public AudioClip enemyDeath;
-    public AudioClip boomerReadying;
 
 	private EnemyMotion enemyMotion;
 	private SpriteRenderer enemySprite;
 	private Transform enemyTransform;
-	private Vector3 positionWhenDamaged;
+	
     private AudioSource enemyAudio;
+
 
 	void Awake()
 	{
@@ -33,8 +36,17 @@ public class DamageTaker : MonoBehaviour {
 
 	void OnEnable()
 	{
+		Init();
+	}
+
+
+	void Init()
+	{
 		Health = baseHealth;
-		positionWhenDamaged = Vector2.zero;
+		GetComponentInChildren<Collider2D>().enabled = true;
+
+		if (enemyAudio != null)
+			enemyAudio.clip = enemyHurt;
 	}
 
 
@@ -46,7 +58,8 @@ public class DamageTaker : MonoBehaviour {
 			Die();
 		else
 		{
-			DoHitAnimation();
+			if (AnimateDamage != null)
+				AnimateDamage();
 
             if (enemyAudio != null)
                 enemyAudio.Play();
@@ -57,81 +70,10 @@ public class DamageTaker : MonoBehaviour {
 	}
 
 
-	void DoHitAnimation()
-	{
-		StopAllCoroutines();
-		StartCoroutine(CoDoHitAnimation());
-	}
-
-
-	IEnumerator CoDoHitAnimation()
-	{
-		yield return new WaitForFixedUpdate();
-
-
-		if (positionWhenDamaged == Vector3.zero)
-			positionWhenDamaged = enemyTransform.localPosition;
-
-
-		for (int i = 0; i < 20; i++)
-		{
-			ShakeEnemy();
-			yield return new WaitForFixedUpdate();
-		}
-
-
-		enemyTransform.localPosition = positionWhenDamaged;
-		positionWhenDamaged = Vector3.zero;
-
-
-		if (OnDamageAnimationEnd != null)
-			OnDamageAnimationEnd(this);
-	}
-
-
-	void DoDeathAnimation()
-	{
-		StopAllCoroutines();
-		StartCoroutine(CoDoDeathAnimation());
-	}
-
-
-	IEnumerator CoDoDeathAnimation()
-	{
-		// TODO: Write actual death animations.
-		yield return new WaitForFixedUpdate();
-
-
-		if (positionWhenDamaged == Vector3.zero)
-			positionWhenDamaged = enemyTransform.localPosition;
-
-
-		for (int i = 0; i < 20; i++)
-		{
-			ShakeEnemy();
-			yield return new WaitForFixedUpdate();
-		}
-
-
-		enemyTransform.localPosition = positionWhenDamaged;
-		positionWhenDamaged = Vector3.zero;
-	}
-
-
-	void ShakeEnemy()
-	{
-		float randomAngle = Random.Range(0, 2 * Mathf.PI);
-		Vector3 shakeDisplacement = new Vector3(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle), 0);
-		shakeDisplacement *= shakeRadius;
-
-		enemyTransform.localPosition = positionWhenDamaged - shakeDisplacement;
-	}
-
-
 	void Die()
 	{
-		// TODO;
-		DoDeathAnimation();
+		if (AnimateDeath != null)
+			AnimateDeath();
 		
 		GetComponentInChildren<Collider2D>().enabled = false;
 

@@ -16,20 +16,24 @@ public class EnemyMotion : MonoBehaviour {
 
 	private DamageDealer damageDealer;
 	private DamageTaker damageTaker;
+	private EnemyAnimator enemyAnimator;
 
 
 	void Awake()
 	{
 		damageDealer = GetComponent<DamageDealer>();
 		damageTaker = GetComponent<DamageTaker>();
+		enemyAnimator = GetComponent<EnemyAnimator>();
 	}
 
 
 	void OnEnable()
 	{
 		damageTaker.OnEnemyDamaged += SuspendMotion;
-		damageTaker.OnDamageAnimationEnd += ResumeMotion;
 		damageTaker.OnEnemyDeath += SuspendMotion;
+
+		if (enemyAnimator != null)
+			enemyAnimator.OnDamageAnimationEnd += ResumeMotion;
 
 		Init();
 	}
@@ -38,8 +42,10 @@ public class EnemyMotion : MonoBehaviour {
 	void OnDisable()
 	{
 		damageTaker.OnEnemyDamaged -= SuspendMotion;
-		damageTaker.OnDamageAnimationEnd -= ResumeMotion;
 		damageTaker.OnEnemyDeath -= SuspendMotion;
+
+		if (enemyAnimator != null)
+			enemyAnimator.OnDamageAnimationEnd -= ResumeMotion;
 	}
 
 
@@ -86,9 +92,10 @@ public class EnemyMotion : MonoBehaviour {
 	}
 
 
-	void ResumeMotion(DamageTaker dmgTaker)
+	void ResumeMotion()
 	{
-		IsMoving = true;
+		if (!GetComponent<Boomer>())
+			IsMoving = true;
 	}
 
 

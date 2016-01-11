@@ -11,16 +11,17 @@ GameObject:
   - 114: {fileID: 11444400}
   - 114: {fileID: 11444592}
   - 114: {fileID: 11464776}
+  - 114: {fileID: 11414982}
   - 114: {fileID: 11446290}
   - 82: {fileID: 8289486}
-  - 82: {fileID: 8246392}
+  - 114: {fileID: 11482202}
   m_Layer: 0
   m_Name: BoomerTether
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &181190
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,80 +79,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!82 &8246392
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178178}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 825a9f8bb468eb241b814ba7ad5329ed, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!82 &8246460
 AudioSource:
   m_ObjectHideFlags: 1
@@ -300,6 +227,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11414982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325bfdc409b940445bdc8e397d93e96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boomerReadying: {fileID: 8300000, guid: d2af4c789dd084445901882fcfd570a5, type: 3}
+  fuseTimer: 2
 --- !u!114 &11444400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,8 +294,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 5
   shakeRadius: 0.05
+  enemyHurt: {fileID: 8300000, guid: 825a9f8bb468eb241b814ba7ad5329ed, type: 3}
   enemyDeath: {fileID: 8300000, guid: 8b9e7b837e758c249b66fe9df55b8127, type: 3}
-  boomerReadying: {fileID: 8300000, guid: d2af4c789dd084445901882fcfd570a5, type: 3}
+--- !u!114 &11482202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61420841269b994782ba59325693ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21242000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -401,6 +352,18 @@ Prefab:
       propertyPath: rotationSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: resumesMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: enemyHurt
+      value: 
+      objectReference: {fileID: 8300000, guid: 825a9f8bb468eb241b814ba7ad5329ed, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178178}

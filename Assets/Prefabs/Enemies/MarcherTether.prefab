@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11465608}
   - 114: {fileID: 11448460}
   - 82: {fileID: 8299114}
+  - 114: {fileID: 11460476}
   m_Layer: 0
   m_Name: MarcherTether
   m_TagString: Untagged
@@ -179,6 +180,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a691f72aad5cb5b468ee5967ad98e321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11460476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d847d5059faf2b74ab39dc262cab1068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11465608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,8 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 5
   shakeRadius: 0.05
+  enemyHurt: {fileID: 8300000, guid: 825a9f8bb468eb241b814ba7ad5329ed, type: 3}
   enemyDeath: {fileID: 8300000, guid: 8b9e7b837e758c249b66fe9df55b8127, type: 3}
-  boomerReadying: {fileID: 8300000, guid: d2af4c789dd084445901882fcfd570a5, type: 3}
 --- !u!114 &11487124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,6 +283,10 @@ Prefab:
       propertyPath: boomerReadying
       value: 
       objectReference: {fileID: 8300000, guid: d2af4c789dd084445901882fcfd570a5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: enemyHurt
+      value: 
+      objectReference: {fileID: 8300000, guid: 825a9f8bb468eb241b814ba7ad5329ed, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180186}

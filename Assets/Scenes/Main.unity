@@ -656,7 +656,7 @@ GameObject:
   - 222: {fileID: 367806558}
   - 114: {fileID: 367806557}
   m_Layer: 5
-  m_Name: ScoreLabel
+  m_Name: TimeLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Score
+  m_Text: Time
 --- !u!222 &367806558
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -803,7 +803,7 @@ GameObject:
   - 114: {fileID: 380123964}
   - 114: {fileID: 380123963}
   m_Layer: 5
-  m_Name: ScoreBox
+  m_Name: TimeBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2544,7 +2544,7 @@ GameObject:
   - 222: {fileID: 1977693325}
   - 114: {fileID: 1977693324}
   m_Layer: 5
-  m_Name: ScoreNumber
+  m_Name: TimeNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

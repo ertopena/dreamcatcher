@@ -56,6 +56,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 180186, guid: a532c92c36882d14f8ab381da4d2f110, type: 2}
   - {fileID: 127484, guid: aa4c458aa813ac048a239d29eb435af5, type: 2}
+  - {fileID: 178178, guid: 1d385598c909f2f459ed5e6ecfcfad4c, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
