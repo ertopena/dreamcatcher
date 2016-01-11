@@ -9,12 +9,14 @@ public class PoolBuilder : MonoBehaviour {
 
 	private GameObject[] _prefabs;
 	private List<GameObject[]> _prefabPools;
+	private int[] _lastIndexFrom;
 
 
 	public List<GameObject[]> BuildPools(GameObject[] prefabs)
 	{
 		_prefabs = prefabs;
 		_prefabPools = new List<GameObject[]>();
+		_lastIndexFrom = new int[_prefabs.Length];
 
 		for (int i = 0; i < _prefabs.Length; i++)
 			SeedPool(i);
@@ -43,11 +45,15 @@ public class PoolBuilder : MonoBehaviour {
 	{
 		GameObject[] pool = _prefabPools[poolIndex];
 		
-
-		for (int i = 0; i < pool.Length; i++)
+		for (int i = 1; i <= pool.Length; i++)
 		{
-			if (!(pool[i].activeInHierarchy))
-				return pool[i];
+			int currentMember = (i + _lastIndexFrom[poolIndex]) % pool.Length;
+
+			if (!(pool[currentMember].activeInHierarchy))
+			{
+				_lastIndexFrom[poolIndex] = currentMember;
+				return pool[currentMember];
+			}
 		}
 
 		Debug.Log("Reached the end of the pool without an inactive object! Fix this!");
