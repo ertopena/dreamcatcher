@@ -293,7 +293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 5
-  shakeRadius: 0.05
   enemyHurt: {fileID: 8300000, guid: 825a9f8bb468eb241b814ba7ad5329ed, type: 3}
   enemyDeath: {fileID: 8300000, guid: 8b9e7b837e758c249b66fe9df55b8127, type: 3}
 --- !u!114 &11482202
@@ -307,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61420841269b994782ba59325693ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeRadius: 0.05
 --- !u!212 &21242000
 SpriteRenderer:
   m_ObjectHideFlags: 1

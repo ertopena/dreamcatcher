@@ -61,6 +61,9 @@ public class EnemyMotion : MonoBehaviour {
 		// Rotate the tether randomly so that each enemy approaches from a new angle.
 		tetherTransform.Rotate(RandomRotation());
 
+		// Set the rotation of the nightmare sprite to be upright.
+		spriteTransform.rotation = Quaternion.identity;
+
 		// Start motion.
 		IsMoving = true;
 	}

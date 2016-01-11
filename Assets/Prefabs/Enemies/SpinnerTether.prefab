@@ -32,6 +32,7 @@ GameObject:
   - 212: {fileID: 21299600}
   - 58: {fileID: 5802870}
   - 82: {fileID: 8271492}
+  - 114: {fileID: 11456976}
   m_Layer: 0
   m_Name: SpinnerSprite
   m_TagString: Untagged
@@ -237,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d847d5059faf2b74ab39dc262cab1068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeRadius: 0.05
 --- !u!114 &11426598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,6 +260,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a691f72aad5cb5b468ee5967ad98e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11456976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea5a7f58a345034ea118ccfee8e034f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11461816
@@ -290,7 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 5
-  shakeRadius: 0.05
   enemyHurt: {fileID: 8300000, guid: 825a9f8bb468eb241b814ba7ad5329ed, type: 3}
   enemyDeath: {fileID: 8300000, guid: 8b9e7b837e758c249b66fe9df55b8127, type: 3}
 --- !u!212 &21299600
