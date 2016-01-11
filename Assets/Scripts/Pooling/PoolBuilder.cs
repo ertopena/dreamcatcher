@@ -39,6 +39,22 @@ public class PoolBuilder : MonoBehaviour {
 	}
 
 
+	public GameObject GetNextInstanceFromPool(int poolIndex)
+	{
+		GameObject[] pool = _prefabPools[poolIndex];
+		
+
+		for (int i = 0; i < pool.Length; i++)
+		{
+			if (!(pool[i].activeInHierarchy))
+				return pool[i];
+		}
+
+		Debug.Log("Reached the end of the pool without an inactive object! Fix this!");
+		return pool[0];
+	}
+
+
 	GameObject CreatePoolMember(int prefabIndex, Transform parent)
 	{
 		GameObject poolMember = Instantiate<GameObject>(_prefabs[prefabIndex]);

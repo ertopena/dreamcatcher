@@ -4,27 +4,26 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	public delegate void GameStateEvent();
-	public event GameStateEvent OnWaveStart;
+	public event GameStateEvent OnGameStart;
+	public event GameStateEvent OnTransitionStart;
+	public event GameStateEvent OnSpawningStart;
 	public event GameStateEvent OnSpawningCompleted;
 	public event GameStateEvent OnWaveCleared;
 	public event GameStateEvent OnPlayerDeath;
 
 
-	public GameState State { get; private set; }
-
+	public int CurrentWave { get; private set; }
+	public bool IsSpawningCompleted { get; private set; }
 	public HeartRateTracker heartRateTracker;
+	public EnemyManager enemyManager;
 	public float childRadius = 0.5f;
-
-
-	void Awake()
-	{
-		State = GameState.PrePlay;
-	}
+	public float transitionDuration = 2f;
 
 
 	void OnEnable()
 	{
 		heartRateTracker.OnLethalHeartRate += HandlePlayerDeath;
+		enemyManager.OnAllWaveEnemiesSpawned += HandleSpawningCompleted;
 		EnemyCounter.OnEnemyCountUpdate += HandleEnemyCountChange;
 	}
 
@@ -32,38 +31,72 @@ public class GameController : MonoBehaviour {
 	void OnDisable()
 	{
 		heartRateTracker.OnLethalHeartRate -= HandlePlayerDeath;
+		enemyManager.OnAllWaveEnemiesSpawned -= HandleSpawningCompleted;
 		EnemyCounter.OnEnemyCountUpdate -= HandleEnemyCountChange;
 	}
 
 
-	void StartWave()
+	void Start()
 	{
-		if (OnWaveStart != null)
-			OnWaveStart();
+		StartGame();
+	}
+
+
+	public void StartGame()
+	{
+		CurrentWave = 0;
+
+		if (OnGameStart != null)
+			OnGameStart();
+
+		StartWave();
+	}
+
+
+	public void StartWave()
+	{
+		CurrentWave++;
+		IsSpawningCompleted = false;
+		StartCoroutine(CoTransitionToWave());
+	}
+
+
+	IEnumerator CoTransitionToWave()
+	{
+		if (OnTransitionStart != null)
+			OnTransitionStart();
+
+
+		// TODO: Flesh out with whatever happens during transition.
+		yield return new WaitForSeconds(transitionDuration);
+
+
+		if (OnSpawningStart != null)
+			OnSpawningStart();
 	}
 
 
 	void HandleSpawningCompleted()
 	{
-		// TODO
+		IsSpawningCompleted = true;
 	}
 
 
 	void HandleEnemyCountChange(int newCount)
 	{
-		if (newCount == 0)
+		if (IsSpawningCompleted && newCount == 0)
 			HandleWaveCleared();
 	}
 
 
 	void HandleWaveCleared()
 	{
-
+		StartWave();
 	}
 
 
 	void HandlePlayerDeath(HeartRateTracker hrt, int finalHeartRate)
 	{
-		// TODO;
+		// TODO: HOOK UP PLAYER HEALTH
 	}
 }

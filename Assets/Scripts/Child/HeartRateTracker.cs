@@ -18,14 +18,14 @@ public class HeartRateTracker : MonoBehaviour {
 
 	void OnEnable()
 	{
-		gameController.OnWaveStart += Init;
+		gameController.OnSpawningStart += Init;
 		DamageDealer.OnDamageToChildAttempted += RaiseHeartRate;
 	}
 
 
 	void OnDisable()
 	{
-		gameController.OnWaveStart -= Init;
+		gameController.OnSpawningStart -= Init;
 		DamageDealer.OnDamageToChildAttempted -= RaiseHeartRate;
 	}
 
