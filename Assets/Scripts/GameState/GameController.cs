@@ -57,7 +57,9 @@ public class GameController : MonoBehaviour {
 	{
 		CurrentWave++;
 		IsSpawningCompleted = false;
-		StartCoroutine(CoTransitionToWave());
+
+		if(this.gameObject.activeInHierarchy)
+			StartCoroutine(CoTransitionToWave());
 	}
 
 

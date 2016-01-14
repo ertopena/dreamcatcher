@@ -147,7 +147,7 @@ MonoBehaviour:
   - {fileID: 127484, guid: aa4c458aa813ac048a239d29eb435af5, type: 2}
   - {fileID: 178178, guid: 1d385598c909f2f459ed5e6ecfcfad4c, type: 2}
   baseWaveDuration: 20
-  baseSpawnInterval: 2
+  baseSpawnInterval: 8
 --- !u!212 &21223004
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -174,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300002, guid: 819a598d2e02f9945b451f8076c788d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

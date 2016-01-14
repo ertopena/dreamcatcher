@@ -11,11 +11,11 @@ public class EnemyManager : MonoBehaviour {
 	public GameController gameController;
 	public GameObject[] enemyPrefabs;
 	public float baseWaveDuration = 20f;
-	public float baseSpawnInterval = 2f;
+	public float baseSpawnInterval = 8f;
 	public float WaveDuration { get { return baseWaveDuration; } }
 	public float SpawnInterval
 	{
-		get { return baseSpawnInterval * Mathf.Pow(Mathf.Sqrt(0.5f), gameController.CurrentWave); } 
+		get { return baseSpawnInterval * Mathf.Pow(0.8f, gameController.CurrentWave); } 
 	}
 
 	private PoolBuilder poolBuilder;
