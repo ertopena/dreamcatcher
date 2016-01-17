@@ -147,7 +147,7 @@ MonoBehaviour:
   - {fileID: 127484, guid: aa4c458aa813ac048a239d29eb435af5, type: 2}
   - {fileID: 178178, guid: 1d385598c909f2f459ed5e6ecfcfad4c, type: 2}
   baseWaveDuration: 20
-  baseSpawnInterval: 8
+  baseSpawnInterval: 4
 --- !u!212 &21223004
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -34,7 +34,6 @@ Here is a non-exhaustive list of the things that need doing. If you think of any
 	* Making sure the game controller knows when the player has lost.
 	* Hooking it up to the HUD to show an overlaid graphic of an EKG or something when the player takes damage.
 	* Should also update the HUD with the new BPM when health changes, of course.
-	* --Hooking it up to listen to Enemy events so that it registers damage to the player.--
   * Enemies
 	* Need to plug in sprites.
 	* Set sprite animations for walking and hurting.
